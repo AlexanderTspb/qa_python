@@ -94,19 +94,14 @@ class TestBooksCollector:
 
     def test_add_book_in_favorites_when_book_exists_and_is_not_in_favorites(self):
         collector = BooksCollector()
-        collector.add_new_book('Властелин колец')
-        collector.set_book_genre('Властелин колец', 'Фантастика')
+        collector.books_genre = {'Властелин колец':'Фантастика'}
         collector.add_book_in_favorites('Властелин колец')
         assert collector.get_list_of_favorites_books() == ['Властелин колец']
 
     def test_delete_book_from_favorites_when_book_exists_and_is_in_favorites(self):
         collector = BooksCollector()
-        collector.add_new_book('Властелин колец')
-        collector.set_book_genre('Властелин колец', 'Фантастика')
-        collector.add_book_in_favorites('Властелин колец')
-        collector.add_new_book('Ведьмак')
-        collector.set_book_genre('Ведьмак', 'Фантастика')
-        collector.add_book_in_favorites('Ведьмак')
+        collector.books_genre = {'Властелин колец':'Фантастика', 'Ведьмак': 'Фантастика'}
+        collector.favorites = ['Властелин колец', 'Ведьмак']
         collector.delete_book_from_favorites('Властелин колец')
         assert collector.get_list_of_favorites_books() == ['Ведьмак']
 
@@ -117,3 +112,13 @@ class TestBooksCollector:
             collector.add_new_book(name)
             collector.set_book_genre(name, book_genre)
         assert collector.get_books_for_children() == ['Властелин колец', 'Волшебник Изумрудного города']
+
+    def test_get_books_genre_when_books_are_added(self):
+        collector = BooksCollector()
+        collector.books_genre = {'Властелин колец':'Фантастика', 'Ведьмак': 'Фантастика'}
+        assert collector.get_books_genre() == {'Властелин колец':'Фантастика', 'Ведьмак': 'Фантастика'}
+
+    def test_get_list_of_favorites_books_when_books_are_favorited(self):
+        collector = BooksCollector()
+        collector.favorites = ['Властелин колец', 'Ведьмак']
+        assert collector.get_list_of_favorites_books() == ['Властелин колец', 'Ведьмак']

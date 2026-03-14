@@ -10,3 +10,5 @@
 8. test_add_book_in_favorites_when_book_exists_and_is_not_in_favorites - проверяет добавление книги в список избранного, книга изначально не находится в списке избранного  
 9. test_delete_book_from_favorites_when_book_exists_and_is_in_favorites - проверяет удаление книги из списка избранного, книга изначально находится в списке избранного  
 10. test_get_books_for_children_when_such_books_exist - проверяет получение списка книг без жанров из списка с возрастным рейтингом  
+11. test_get_books_genre_when_books_are_added - проверяет получение списка добавленных книг  
+12. test_get_list_of_favorites_books_when_books_are_favorited - ппроверяет получение списка добавленных в избранное книг  
